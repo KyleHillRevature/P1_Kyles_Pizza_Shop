@@ -1,0 +1,347 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Kirsten\\Desktop\\KyleHillRepo01\\projects\\Project1.StoreApplication\\Project1.StoreApplication\\Project1.StoreApplication.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Kirsten\\Desktop\\KyleHillRepo01\\projects\\Project1.StoreApplication\\Project1.StoreApplication.Business\\Project1.StoreApplication.Business.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Kirsten\\Desktop\\KyleHillRepo01\\projects\\Project1.StoreApplication\\Project1.StoreApplication.Business\\Project1.StoreApplication.Business.csproj",
+        "projectName": "Project1.StoreApplication.Business",
+        "projectPath": "C:\\Users\\Kirsten\\Desktop\\KyleHillRepo01\\projects\\Project1.StoreApplication\\Project1.StoreApplication.Business\\Project1.StoreApplication.Business.csproj",
+        "packagesPath": "C:\\Users\\Kirsten\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Kirsten\\Desktop\\KyleHillRepo01\\projects\\Project1.StoreApplication\\Project1.StoreApplication.Business\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\PROGRAM FILES\\DOTNET\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Kirsten\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\Kirsten\\Desktop\\KyleHillRepo01\\projects\\Project1.StoreApplication\\Project1.StoreApplication.Domain\\Project1.StoreApplication.Domain.csproj": {
+                "projectPath": "C:\\Users\\Kirsten\\Desktop\\KyleHillRepo01\\projects\\Project1.StoreApplication\\Project1.StoreApplication.Domain\\Project1.StoreApplication.Domain.csproj"
+              },
+              "C:\\Users\\Kirsten\\Desktop\\KyleHillRepo01\\projects\\Project1.StoreApplication\\Project1.StoreApplication.Storage\\Project1.StoreApplication.Storage.csproj": {
+                "projectPath": "C:\\Users\\Kirsten\\Desktop\\KyleHillRepo01\\projects\\Project1.StoreApplication\\Project1.StoreApplication.Storage\\Project1.StoreApplication.Storage.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Http": {
+              "target": "Package",
+              "version": "[2.2.2, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Core": {
+              "target": "Package",
+              "version": "[2.2.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.9, )"
+            },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[4.1.0, )"
+            },
+            "Serilog.Filters.Expressions": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            },
+            "Serilog.Settings.Configuration": {
+              "target": "Package",
+              "version": "[3.2.0, )"
+            },
+            "Serilog.Sinks.File": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\PROGRAM FILES\\DOTNET\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Kirsten\\Desktop\\KyleHillRepo01\\projects\\Project1.StoreApplication\\Project1.StoreApplication.Domain\\Project1.StoreApplication.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Kirsten\\Desktop\\KyleHillRepo01\\projects\\Project1.StoreApplication\\Project1.StoreApplication.Domain\\Project1.StoreApplication.Domain.csproj",
+        "projectName": "Project1.StoreApplication.Domain",
+        "projectPath": "C:\\Users\\Kirsten\\Desktop\\KyleHillRepo01\\projects\\Project1.StoreApplication\\Project1.StoreApplication.Domain\\Project1.StoreApplication.Domain.csproj",
+        "packagesPath": "C:\\Users\\Kirsten\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Kirsten\\Desktop\\KyleHillRepo01\\projects\\Project1.StoreApplication\\Project1.StoreApplication.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\PROGRAM FILES\\DOTNET\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Kirsten\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.9, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\PROGRAM FILES\\DOTNET\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Kirsten\\Desktop\\KyleHillRepo01\\projects\\Project1.StoreApplication\\Project1.StoreApplication.Storage\\Project1.StoreApplication.Storage.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Kirsten\\Desktop\\KyleHillRepo01\\projects\\Project1.StoreApplication\\Project1.StoreApplication.Storage\\Project1.StoreApplication.Storage.csproj",
+        "projectName": "Project1.StoreApplication.Storage",
+        "projectPath": "C:\\Users\\Kirsten\\Desktop\\KyleHillRepo01\\projects\\Project1.StoreApplication\\Project1.StoreApplication.Storage\\Project1.StoreApplication.Storage.csproj",
+        "packagesPath": "C:\\Users\\Kirsten\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Kirsten\\Desktop\\KyleHillRepo01\\projects\\Project1.StoreApplication\\Project1.StoreApplication.Storage\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\PROGRAM FILES\\DOTNET\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Kirsten\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\Kirsten\\Desktop\\KyleHillRepo01\\projects\\Project1.StoreApplication\\Project1.StoreApplication.Domain\\Project1.StoreApplication.Domain.csproj": {
+                "projectPath": "C:\\Users\\Kirsten\\Desktop\\KyleHillRepo01\\projects\\Project1.StoreApplication\\Project1.StoreApplication.Domain\\Project1.StoreApplication.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[4.1.0, )"
+            },
+            "Serilog.Filters.Expressions": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            },
+            "Serilog.Settings.Configuration": {
+              "target": "Package",
+              "version": "[3.2.0, )"
+            },
+            "Serilog.Sinks.File": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\PROGRAM FILES\\DOTNET\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Kirsten\\Desktop\\KyleHillRepo01\\projects\\Project1.StoreApplication\\Project1.StoreApplication\\Project1.StoreApplication.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Kirsten\\Desktop\\KyleHillRepo01\\projects\\Project1.StoreApplication\\Project1.StoreApplication\\Project1.StoreApplication.csproj",
+        "projectName": "Project1.StoreApplication",
+        "projectPath": "C:\\Users\\Kirsten\\Desktop\\KyleHillRepo01\\projects\\Project1.StoreApplication\\Project1.StoreApplication\\Project1.StoreApplication.csproj",
+        "packagesPath": "C:\\Users\\Kirsten\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Kirsten\\Desktop\\KyleHillRepo01\\projects\\Project1.StoreApplication\\Project1.StoreApplication\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\PROGRAM FILES\\DOTNET\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Kirsten\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\Kirsten\\Desktop\\KyleHillRepo01\\projects\\Project1.StoreApplication\\Project1.StoreApplication.Business\\Project1.StoreApplication.Business.csproj": {
+                "projectPath": "C:\\Users\\Kirsten\\Desktop\\KyleHillRepo01\\projects\\Project1.StoreApplication\\Project1.StoreApplication.Business\\Project1.StoreApplication.Business.csproj"
+              },
+              "C:\\Users\\Kirsten\\Desktop\\KyleHillRepo01\\projects\\Project1.StoreApplication\\Project1.StoreApplication.Domain\\Project1.StoreApplication.Domain.csproj": {
+                "projectPath": "C:\\Users\\Kirsten\\Desktop\\KyleHillRepo01\\projects\\Project1.StoreApplication\\Project1.StoreApplication.Domain\\Project1.StoreApplication.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.9, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.8, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[5.0.2, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[5.6.3, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\PROGRAM FILES\\DOTNET\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

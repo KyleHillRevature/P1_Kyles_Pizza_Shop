@@ -1,0 +1,17 @@
+C:\Users\Kirsten\Desktop\KyleHillRepo01\projects\Project1.StoreApplication\Project1.StoreApplication.Business\obj\Debug\net5.0\Project1.StoreApplication.Business.csproj.AssemblyReference.cache
+C:\Users\Kirsten\Desktop\KyleHillRepo01\projects\Project1.StoreApplication\Project1.StoreApplication.Business\obj\Debug\net5.0\Project1.StoreApplication.Business.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Kirsten\Desktop\KyleHillRepo01\projects\Project1.StoreApplication\Project1.StoreApplication.Business\obj\Debug\net5.0\Project1.StoreApplication.Business.AssemblyInfoInputs.cache
+C:\Users\Kirsten\Desktop\KyleHillRepo01\projects\Project1.StoreApplication\Project1.StoreApplication.Business\obj\Debug\net5.0\Project1.StoreApplication.Business.AssemblyInfo.cs
+C:\Users\Kirsten\Desktop\KyleHillRepo01\projects\Project1.StoreApplication\Project1.StoreApplication.Business\obj\Debug\net5.0\Project1.StoreApplication.Business.csproj.CoreCompileInputs.cache
+C:\Users\Kirsten\Desktop\KyleHillRepo01\projects\Project1.StoreApplication\Project1.StoreApplication.Business\bin\Debug\net5.0\Project1.StoreApplication.Business.deps.json
+C:\Users\Kirsten\Desktop\KyleHillRepo01\projects\Project1.StoreApplication\Project1.StoreApplication.Business\bin\Debug\net5.0\Project1.StoreApplication.Business.dll
+C:\Users\Kirsten\Desktop\KyleHillRepo01\projects\Project1.StoreApplication\Project1.StoreApplication.Business\bin\Debug\net5.0\ref\Project1.StoreApplication.Business.dll
+C:\Users\Kirsten\Desktop\KyleHillRepo01\projects\Project1.StoreApplication\Project1.StoreApplication.Business\bin\Debug\net5.0\Project1.StoreApplication.Business.pdb
+C:\Users\Kirsten\Desktop\KyleHillRepo01\projects\Project1.StoreApplication\Project1.StoreApplication.Business\bin\Debug\net5.0\Project1.StoreApplication.Domain.dll
+C:\Users\Kirsten\Desktop\KyleHillRepo01\projects\Project1.StoreApplication\Project1.StoreApplication.Business\bin\Debug\net5.0\Project1.StoreApplication.Storage.dll
+C:\Users\Kirsten\Desktop\KyleHillRepo01\projects\Project1.StoreApplication\Project1.StoreApplication.Business\bin\Debug\net5.0\Project1.StoreApplication.Domain.pdb
+C:\Users\Kirsten\Desktop\KyleHillRepo01\projects\Project1.StoreApplication\Project1.StoreApplication.Business\bin\Debug\net5.0\Project1.StoreApplication.Storage.pdb
+C:\Users\Kirsten\Desktop\KyleHillRepo01\projects\Project1.StoreApplication\Project1.StoreApplication.Business\obj\Debug\net5.0\Project1.StoreApplication.Business.csproj.CopyComplete
+C:\Users\Kirsten\Desktop\KyleHillRepo01\projects\Project1.StoreApplication\Project1.StoreApplication.Business\obj\Debug\net5.0\Project1.StoreApplication.Business.dll
+C:\Users\Kirsten\Desktop\KyleHillRepo01\projects\Project1.StoreApplication\Project1.StoreApplication.Business\obj\Debug\net5.0\ref\Project1.StoreApplication.Business.dll
+C:\Users\Kirsten\Desktop\KyleHillRepo01\projects\Project1.StoreApplication\Project1.StoreApplication.Business\obj\Debug\net5.0\Project1.StoreApplication.Business.pdb

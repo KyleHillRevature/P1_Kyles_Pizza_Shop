@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <!--Right now I am not checking for duplicate first and last names-->
+    <div id="newCustomerPrompt" hidden>
+        <p>Please provide your first and last name.</p>
+        <form action="javascript:void(0);" onsubmit="addItem()">
+            <label for="add-first-name">First name:</label>
+            <input type="text" id="add-first-name"><br><br>
+            <label for="add-last-name">Last name:</label>
+            <input type="text" id="add-last-name"><br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <script src="js/new_customer.js" asp-append-version="true"></script>
+</body>
+</html>
