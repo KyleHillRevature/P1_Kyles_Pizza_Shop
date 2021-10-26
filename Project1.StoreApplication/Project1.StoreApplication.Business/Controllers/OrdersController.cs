@@ -10,6 +10,7 @@ using Project1.StoreApplication.Domain.ViewModels;
 using Project1.StoreApplication.Domain.InputModels;
 using Project1.StoreApplication.Domain.Interfaces.Repository;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Diagnostics;
 
 namespace Project1.StoreApplication.Business.Controllers
 {
@@ -41,7 +42,7 @@ namespace Project1.StoreApplication.Business.Controllers
         //method is async because copy pasted the template
         // GET: api/Customers/userType_and_id
         [HttpGet("idType={idType}&id={id}")]
-        public IEnumerable<Order> GetOrders(string idType, int id)
+        public IEnumerable<OrderView> GetOrders(string idType, int id)
         {
             List<Order> orders = new List<Order>();
             //List<OrderItem> orderItems = new List<OrderItem>();
@@ -51,9 +52,18 @@ namespace Project1.StoreApplication.Business.Controllers
             //List<Product> products = new List<Product>();
             List<OrderView> orderViews = new List<OrderView>();
             //List<OrderItemView> orderItemViews = new List<OrderItemView>();
-           
-            if (idType.Equals("customer")) orders = _orderRepository.AllOrdersForCustomer(id, Order.cartOrderDate);
-            else orders = _orderRepository.AllOrdersForLocation(id, Order.cartOrderDate);
+            //try
+            //{
+                //throw new Exception("Was not able to access the database for the customers orders.");
+                if (idType.Equals("customer")) orders = _orderRepository.AllOrdersForCustomer(8, Order.cartOrderDate);
+                else orders = _orderRepository.AllOrdersForLocation(id, Order.cartOrderDate);
+                Guid id1 = orders[0].Id;
+                
+            //}
+            //catch (Exception ex) {
+            //    _logger.LogError(ex.Message);
+            //    _logger.LogError(ex.StackTrace);
+            //}
             #region
             //List<int> locationIdList = new List<int>();
             //foreach (Order order in orders)
@@ -121,7 +131,9 @@ namespace Project1.StoreApplication.Business.Controllers
             //    _logger.LogInformation($"The order dates range from {orderViews[0].OrderDate} up to {orderViews.LastOrDefault().OrderDate}");
             //}
             //else _logger.LogInformation($"{idType} {id} viewed their empty list of orders.");
-            return orders;
+            
+            //return orders;
+            return orderViews;
         }
 
         // GET: api/Orders/5

@@ -60,7 +60,8 @@ namespace Project1.StoreApplication
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                //app.UseExceptionHandler("/Error");
+                //app.UseDeveloperExceptionPage();
                 //app.UseSwagger();
                 //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Project1.StoreApplication v1"));
             }

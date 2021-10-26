@@ -22,9 +22,7 @@ namespace Project1.StoreApplication
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                })
-                .UseSerilog((hostingContext, loggerConfig) =>
-                    loggerConfig.ReadFrom.Configuration(hostingContext.Configuration)
-                );
+                });
+                
     }
 }

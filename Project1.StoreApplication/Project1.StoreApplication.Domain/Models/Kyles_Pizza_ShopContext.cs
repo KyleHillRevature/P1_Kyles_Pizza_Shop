@@ -63,15 +63,15 @@ namespace Project1.StoreApplication.Domain.Models
             {
                 entity.ToTable("LocationInventory");
 
-                entity.HasOne(d => d.Location)
-                    .WithMany(p => p.LocationInventories)
-                    .HasForeignKey(d => d.LocationId)
-                    .HasConstraintName("FK__LocationI__Locat__2D27B809");
+                //entity.HasOne(d => d.Location)
+                //    .WithMany(p => p.LocationInventories)
+                //    .HasForeignKey(d => d.LocationId)
+                //    .HasConstraintName("FK__LocationI__Locat__2D27B809");
 
-                entity.HasOne(d => d.Product)
-                    .WithMany(p => p.LocationInventories)
-                    .HasForeignKey(d => d.ProductId)
-                    .HasConstraintName("FK__LocationI__Produ__2E1BDC42");
+                //entity.HasOne(d => d.Product)
+                //    .WithMany(p => p.LocationInventories)
+                //    .HasForeignKey(d => d.ProductId)
+                //    .HasConstraintName("FK__LocationI__Produ__2E1BDC42");
             });
 
             modelBuilder.Entity<Order>(entity =>
@@ -80,30 +80,30 @@ namespace Project1.StoreApplication.Domain.Models
 
                 entity.Property(e => e.TotalPrice).HasColumnType("decimal(19, 4)");
 
-                entity.HasOne(d => d.Customer)
-                    .WithMany(p => p.Orders)
-                    .HasForeignKey(d => d.CustomerId)
-                    .HasConstraintName("FK__Orders__Customer__34C8D9D1");
+                //entity.HasOne(d => d.Customer)
+                //    .WithMany(p => p.Orders)
+                //    .HasForeignKey(d => d.CustomerId)
+                //    .HasConstraintName("FK__Orders__Customer__34C8D9D1");
 
-                entity.HasOne(d => d.Location)
-                    .WithMany(p => p.Orders)
-                    .HasForeignKey(d => d.LocationId)
-                    .HasConstraintName("FK__Orders__Location__35BCFE0A");
+                //entity.HasOne(d => d.Location)
+                //    .WithMany(p => p.Orders)
+                //    .HasForeignKey(d => d.LocationId)
+                //    .HasConstraintName("FK__Orders__Location__35BCFE0A");
             });
 
             modelBuilder.Entity<OrderItem>(entity =>
             {
                 entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
 
-                entity.HasOne(d => d.Order)
-                    .WithMany(p => p.OrderItems)
-                    .HasForeignKey(d => d.OrderId)
-                    .HasConstraintName("FK__OrderItem__Order__398D8EEE");
+                //entity.HasOne(d => d.Order)
+                //    .WithMany(p => p.OrderItems)
+                //    .HasForeignKey(d => d.OrderId)
+                //    .HasConstraintName("FK__OrderItem__Order__398D8EEE");
 
-                entity.HasOne(d => d.Product)
-                    .WithMany(p => p.OrderItems)
-                    .HasForeignKey(d => d.ProductId)
-                    .HasConstraintName("FK__OrderItem__Produ__3A81B327");
+                //entity.HasOne(d => d.Product)
+                //    .WithMany(p => p.OrderItems)
+                //    .HasForeignKey(d => d.ProductId)
+                //    .HasConstraintName("FK__OrderItem__Produ__3A81B327");
             });
 
             modelBuilder.Entity<Product>(entity =>

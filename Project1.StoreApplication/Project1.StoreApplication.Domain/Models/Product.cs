@@ -9,8 +9,8 @@ namespace Project1.StoreApplication.Domain.Models
     {
         public Product()
         {
-            LocationInventories = new HashSet<LocationInventory>();
-            OrderItems = new HashSet<OrderItem>();
+            //LocationInventories = new HashSet<LocationInventory>();
+            //OrderItems = new HashSet<OrderItem>();
         }
 
         public int Id { get; set; }
@@ -18,7 +18,7 @@ namespace Project1.StoreApplication.Domain.Models
         public string Description1 { get; set; }
         public decimal ProductPrice { get; set; }
 
-        public virtual ICollection<LocationInventory> LocationInventories { get; set; }
-        public virtual ICollection<OrderItem> OrderItems { get; set; }
+        //public virtual ICollection<LocationInventory> LocationInventories { get; set; }
+        //public virtual ICollection<OrderItem> OrderItems { get; set; }
     }
 }

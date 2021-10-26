@@ -17,11 +17,13 @@ namespace Project1.StoreApplication.Business.Controllers
     {
         private readonly ICustomerRepository _customerRepo;
         private readonly ILogger<CustomersController> _logger;
+        private readonly IOrderRepository _orderRepository;
 
-        public CustomersController(ICustomerRepository customerRepository, ILogger<CustomersController> logger)
+        public CustomersController(ICustomerRepository customerRepository, ILogger<CustomersController> logger, IOrderRepository orderRepository)
         {
             _customerRepo = customerRepository;
             _logger = logger;
+            _orderRepository = orderRepository;
         }
 
         // GET: api/Customers
@@ -52,21 +54,31 @@ namespace Project1.StoreApplication.Business.Controllers
         {
             _logger.LogInformation($"{firstName} {lastName} attempted to sign in as a {userType} customer.");
 
-
-            if (!Customer.isValidName(firstName, lastName)) { _logger.LogInformation("Name was invalid"); return -2;  }
+            if (!Customer.isValidName(firstName, lastName)) return -2;  
             var customer = _customerRepo.FindCustomer(firstName, lastName);
 
-
             if (customer.Count == 1)
-                if (userType.Equals("returning")) { _logger.LogInformation("They signed in successfully"); return customer[0].Id; }
+                if (userType.Equals("returning")) { 
+                    _logger.LogInformation($"{firstName} {lastName} ({customer[0].Id}) signed in successfully"); 
+                    List<Order> orders = _orderRepository.AllOrdersForCustomer(customer[0].Id, Order.cartOrderDate);
+                    string pastOrdersString = orders.Count + " past orders, see below\n";
+                    int orderIndex = 1;
+                    foreach (Order order in orders)
+                    { pastOrdersString += order.Id + " | " + order.OrderDate + " | " + order.Location.CityName + " | " + order.OrderItems.Count + " | " + order.TotalPrice ;
+                        if (orderIndex != orders.Count) pastOrdersString += '\n'; orderIndex++; }
+                    _logger.LogInformation(pastOrdersString);
+                    
+
+
+            return customer[0].Id; }
                 //can't repeat names
-                else { _logger.LogInformation("They were a new customer and used the name of a current customer"); return -1; }
+                else return -1; 
             else
                 //couldn't find you in the system
-                if (userType.Equals("returning")) {_logger.LogInformation("They mistyped their name"); return -3; }
+                if (userType.Equals("returning")) return -3; 
             else
             {
-                _logger.LogInformation("They were a new user and successfully made an account");
+                _logger.LogInformation($"{firstName} {lastName} successfully made an account.");
                 Customer customer1 = new Customer() { FirstName = firstName, LastName = lastName };
                 return _customerRepo.AddCustomer(customer1);
             }

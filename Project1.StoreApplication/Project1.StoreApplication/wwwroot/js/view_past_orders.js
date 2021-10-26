@@ -16,11 +16,11 @@ fetch(`${uri}/idType=${idType}&id=${id}`)
 
 function _displayOrders(data) {
     data.forEach(item => {
-
-        //let x = document.createElement("UL");
-        //x.setAttribute("id", "myUL");
-        //x.style.listStyleType = "none"
-        //document.body.appendChild(x);
+        console.log(item)
+        let x = document.createElement("UL");
+        x.setAttribute("id", "myUL");
+        x.style.listStyleType = "none"
+        document.body.appendChild(x);
 
         //let y = document.createElement("LI");
         //let t = document.createTextNode(item.orderDate);
@@ -40,17 +40,17 @@ function _displayOrders(data) {
         //    document.body.innerHTML += `<li>${item.orderItems[i].name1}</li>`
 
 
-        //document.body.innerHTML += `<ul style="list-style-type:none;">`
-        //    document.body.innerHTML += `<li>${item.orderDate}</li>`
-        //    document.body.innerHTML += `<li>${item.customerName}</li>`
-        //    document.body.innerHTML += `<li>${item.locationName}</li>`
-        //    document.body.innerHTML += `<li>${item.totalPrice}</li>`
-        //    document.body.innerHTML += "<li>-------------------------------------------</li>"
-        //    document.body.innerHTML += `<li>Order Items</li>`
-        //for (let i = 0; i < item.orderItems.length; i++)
-        //    document.body.innerHTML += `<li>${item.orderItems[i].name1}</li>`
-        //document.body.innerHTML += `</ul>`
-        console.log(item)
+        document.body.innerHTML += `<ul style="list-style-type:none;">`
+            document.body.innerHTML += `<li>${item.orderDate}</li>`
+            document.body.innerHTML += `<li>${item.customerName}</li>`
+            document.body.innerHTML += `<li>${item.locationName}</li>`
+            document.body.innerHTML += `<li>${item.totalPrice}</li>`
+            document.body.innerHTML += "<li>-------------------------------------------</li>"
+            document.body.innerHTML += `<li>Order Items</li>`
+        for (let i = 0; i < item.orderItems.length; i++)
+            document.body.innerHTML += `<li>${item.orderItems[i].name1}</li>`
+        document.body.innerHTML += `</ul>`
+        //console.log(item)
         
 
 
