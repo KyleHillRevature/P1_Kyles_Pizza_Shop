@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "tOF7kxXMTjyIST+2abV734Z9RCS6axbERNg4lP9qjhbUGRvWtgXJuRYtOiOhoUUCaJ4Zf1vGCnkhkToqJK8sRg==",
+  "dgSpecHash": "hUb3ziMFtUQN5m1TllXWf4CQCJPJGAzehUFIhBu9KqRjxoc40rNA2MDySEP6uTqO8ogpphQehL+aVpXtO6MMPA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Kirsten\\Desktop\\KyleHillRepo01\\projects\\Project1.StoreApplication\\Project1.StoreApplication\\Project1.StoreApplication.csproj",
+  "projectFilePath": "C:\\Users\\Kirsten\\Desktop\\P1_Kyles_Pizza_Shop\\Project1.StoreApplication\\Project1.StoreApplication\\Project1.StoreApplication.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Kirsten\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\PROGRAM FILES\\DOTNET\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

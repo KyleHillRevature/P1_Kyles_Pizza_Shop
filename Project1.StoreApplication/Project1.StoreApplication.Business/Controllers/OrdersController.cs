@@ -42,7 +42,7 @@ namespace Project1.StoreApplication.Business.Controllers
         //method is async because copy pasted the template
         // GET: api/Customers/userType_and_id
         [HttpGet("idType={idType}&id={id}")]
-        public IEnumerable<OrderView> GetOrders(string idType, int id)
+        public IEnumerable<Order> GetOrders(string idType, int id)
         {
             List<Order> orders = new List<Order>();
             //List<OrderItem> orderItems = new List<OrderItem>();
@@ -55,9 +55,8 @@ namespace Project1.StoreApplication.Business.Controllers
             //try
             //{
                 //throw new Exception("Was not able to access the database for the customers orders.");
-                if (idType.Equals("customer")) orders = _orderRepository.AllOrdersForCustomer(8, Order.cartOrderDate);
+                if (idType.Equals("customer")) orders = _orderRepository.AllOrdersForCustomer(id, Order.cartOrderDate);
                 else orders = _orderRepository.AllOrdersForLocation(id, Order.cartOrderDate);
-                Guid id1 = orders[0].Id;
                 
             //}
             //catch (Exception ex) {
@@ -84,18 +83,18 @@ namespace Project1.StoreApplication.Business.Controllers
             //locations = _locationRepository.GetLocations();
             //products = _productRepository.GetProducts();
 
-            foreach (Order order in orders)
-            {
-                OrderView orderView = new OrderView()
-                {
-                    CustomerId = order.CustomerId,
-                    Id = order.Id,
-                    LocationId = order.LocationId,
-                    OrderDate = order.OrderDate,
-                    TotalPrice = order.TotalPrice
-                };
-                orderViews.Add(orderView);
-            }
+            //foreach (Order order in orders)
+            //{
+            //    OrderView orderView = new OrderView()
+            //    {
+            //        CustomerId = order.CustomerId,
+            //        Id = order.Id,
+            //        LocationId = order.LocationId,
+            //        OrderDate = order.OrderDate,
+            //        TotalPrice = order.TotalPrice
+            //    };
+            //    orderViews.Add(orderView);
+            //}
 
             //foreach (OrderItem orderItem in orderItems)
             //{
@@ -132,8 +131,8 @@ namespace Project1.StoreApplication.Business.Controllers
             //}
             //else _logger.LogInformation($"{idType} {id} viewed their empty list of orders.");
             
-            //return orders;
-            return orderViews;
+            return orders;
+            //return orderViews;
         }
 
         // GET: api/Orders/5

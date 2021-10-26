@@ -17,12 +17,12 @@ namespace Project1.StoreApplication.Storage
 
         public List<Order> AllOrdersForCustomer(int customerId, string cartMarkerDate)
         {
-            //return _context.Orders.FromSqlRaw<Order>($"select * from Orders where CustomerID = {customerId} and OrderDate > '{cartMarkerDate}'  order by OrderDate").ToList();
             return _context.Orders.Include(o => o.Customer)
                                     .Include(o => o.Location)
                                     .Include(o => o.OrderItems)
                                     .ThenInclude(oi => oi.Product)
                                     .Where(o => o.CustomerId == customerId && o.OrderDate > DateTime.Parse(cartMarkerDate))
+                                    .OrderBy(o => o.OrderDate)
                                     .ToList();
         }
         public List<Order> AllOrdersForLocation(int locationId, string cartMarkerDate)

@@ -10,3 +10,15 @@ C:\Users\Kirsten\Desktop\KyleHillRepo01\projects\Project1.StoreApplication\Proje
 C:\Users\Kirsten\Desktop\KyleHillRepo01\projects\Project1.StoreApplication\Project1.StoreApplication.Domain\obj\Debug\net5.0\ref\Project1.StoreApplication.Domain.dll
 C:\Users\Kirsten\Desktop\KyleHillRepo01\projects\Project1.StoreApplication\Project1.StoreApplication.Domain\obj\Debug\net5.0\Project1.StoreApplication.Domain.pdb
 C:\Users\Kirsten\Desktop\KyleHillRepo01\projects\Project1.StoreApplication\Project1.StoreApplication.Domain\obj\Debug\net5.0\Project1.StoreApplication.Domain.csproj.AssemblyReference.cache
+C:\Users\Kirsten\Desktop\P1_Kyles_Pizza_Shop\Project1.StoreApplication\Project1.StoreApplication.Domain\bin\Debug\net5.0\Project1.StoreApplication.Domain.deps.json
+C:\Users\Kirsten\Desktop\P1_Kyles_Pizza_Shop\Project1.StoreApplication\Project1.StoreApplication.Domain\bin\Debug\net5.0\Project1.StoreApplication.Domain.dll
+C:\Users\Kirsten\Desktop\P1_Kyles_Pizza_Shop\Project1.StoreApplication\Project1.StoreApplication.Domain\bin\Debug\net5.0\ref\Project1.StoreApplication.Domain.dll
+C:\Users\Kirsten\Desktop\P1_Kyles_Pizza_Shop\Project1.StoreApplication\Project1.StoreApplication.Domain\bin\Debug\net5.0\Project1.StoreApplication.Domain.pdb
+C:\Users\Kirsten\Desktop\P1_Kyles_Pizza_Shop\Project1.StoreApplication\Project1.StoreApplication.Domain\obj\Debug\net5.0\Project1.StoreApplication.Domain.csproj.AssemblyReference.cache
+C:\Users\Kirsten\Desktop\P1_Kyles_Pizza_Shop\Project1.StoreApplication\Project1.StoreApplication.Domain\obj\Debug\net5.0\Project1.StoreApplication.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Kirsten\Desktop\P1_Kyles_Pizza_Shop\Project1.StoreApplication\Project1.StoreApplication.Domain\obj\Debug\net5.0\Project1.StoreApplication.Domain.AssemblyInfoInputs.cache
+C:\Users\Kirsten\Desktop\P1_Kyles_Pizza_Shop\Project1.StoreApplication\Project1.StoreApplication.Domain\obj\Debug\net5.0\Project1.StoreApplication.Domain.AssemblyInfo.cs
+C:\Users\Kirsten\Desktop\P1_Kyles_Pizza_Shop\Project1.StoreApplication\Project1.StoreApplication.Domain\obj\Debug\net5.0\Project1.StoreApplication.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Kirsten\Desktop\P1_Kyles_Pizza_Shop\Project1.StoreApplication\Project1.StoreApplication.Domain\obj\Debug\net5.0\Project1.StoreApplication.Domain.dll
+C:\Users\Kirsten\Desktop\P1_Kyles_Pizza_Shop\Project1.StoreApplication\Project1.StoreApplication.Domain\obj\Debug\net5.0\ref\Project1.StoreApplication.Domain.dll
+C:\Users\Kirsten\Desktop\P1_Kyles_Pizza_Shop\Project1.StoreApplication\Project1.StoreApplication.Domain\obj\Debug\net5.0\Project1.StoreApplication.Domain.pdb
