@@ -45,94 +45,11 @@ namespace Project1.StoreApplication.Business.Controllers
         public IEnumerable<Order> GetOrders(string idType, int id)
         {
             List<Order> orders = new List<Order>();
-            //List<OrderItem> orderItems = new List<OrderItem>();
-            //List<Customer> customers = new List<Customer>();
-            //List<Location> locations = new List<Location>();
-            //List<string> orderIdList = new List<string>();
-            //List<Product> products = new List<Product>();
-            List<OrderView> orderViews = new List<OrderView>();
-            //List<OrderItemView> orderItemViews = new List<OrderItemView>();
-            //try
-            //{
-                //throw new Exception("Was not able to access the database for the customers orders.");
+           
                 if (idType.Equals("customer")) orders = _orderRepository.AllOrdersForCustomer(id, Order.cartOrderDate);
                 else orders = _orderRepository.AllOrdersForLocation(id, Order.cartOrderDate);
                 
-            //}
-            //catch (Exception ex) {
-            //    _logger.LogError(ex.Message);
-            //    _logger.LogError(ex.StackTrace);
-            //}
-            #region
-            //List<int> locationIdList = new List<int>();
-            //foreach (Order order in orders)
-            //{ 
-            //    if (!locationIdList.Contains(order.LocationId))
-            //        locationIdList.Add(order.LocationId);
-            //    orderIdList.Add(order.Id.ToString());
-            //}
-            //string locationIdListString = string.Join<int>(",", locationIdList);
-            //string orderIdListString = '\''+ string.Join<string>("','", orderIdList) + '\'';
-            //orderItems = _context.OrderItems.FromSqlRaw<OrderItem>($"select * from OrderItems where OrderId in ({orderIdListString})").ToList();
-            //customers = _context.Customers.FromSqlRaw<Customer>($"select * from Customers where Id = {id}").ToList();
-            //locations = _context.Locations.FromSqlRaw<Location>($"select * from Locations where Id in ({locationIdListString})").ToList();
-            //products = _context.Products.FromSqlRaw<Product>($"select * from Products").ToList();
-            #endregion
-            //orderItems = _orderItemRepository.GetAllOrderItems();
-            //customers = _customerRepository.GetAll();
-            //locations = _locationRepository.GetLocations();
-            //products = _productRepository.GetProducts();
-
-            //foreach (Order order in orders)
-            //{
-            //    OrderView orderView = new OrderView()
-            //    {
-            //        CustomerId = order.CustomerId,
-            //        Id = order.Id,
-            //        LocationId = order.LocationId,
-            //        OrderDate = order.OrderDate,
-            //        TotalPrice = order.TotalPrice
-            //    };
-            //    orderViews.Add(orderView);
-            //}
-
-            //foreach (OrderItem orderItem in orderItems)
-            //{
-            //    OrderItemView orderItemView = new OrderItemView();
-            //    {
-            //        orderItemView.Id = orderItem.Id;
-            //        orderItemView.OrderId = orderItem.OrderId;
-            //        orderItemView.ProductId = orderItem.ProductId;
-            //    }
-            //    orderItemViews.Add(orderItemView);        
-            //}
-            //foreach (OrderItemView orderItemView in orderItemViews) 
-            //    foreach (Product product in products)
-            //        if (product.Id == orderItemView.ProductId)
-            //            {orderItemView.Name1 = product.Name1; orderItemView.ProductPrice = product.ProductPrice;}
-
-
-            //foreach (OrderView orderView in orderViews) {
-            //    foreach (OrderItemView orderItemView in orderItemViews)
-            //        if (orderView.Id == orderItemView.OrderId)
-            //            orderView.OrderItems.Add(orderItemView);
-            //    foreach (Customer customer in customers)
-            //        if (orderView.CustomerId == customer.Id)
-            //            orderView.CustomerName = customer.FirstName + " " + customer.LastName;
-            //    foreach (Location location in locations)
-            //        if (orderView.LocationId == location.Id)
-            //            orderView.LocationName = location.CityName; 
-            //}
-            //if (orderViews.Count != 0)
-            //{
-            //    if (idType.Equals("customer")) _logger.LogInformation($"{orderViews[0].CustomerName} viewed their {orderViews.Count} orders. ");
-            //    else _logger.LogInformation($"{orderViews[0].LocationName} location viewed their {orderViews.Count} orders. ");
-            //    _logger.LogInformation($"The order dates range from {orderViews[0].OrderDate} up to {orderViews.LastOrDefault().OrderDate}");
-            //}
-            //else _logger.LogInformation($"{idType} {id} viewed their empty list of orders.");
-            
             return orders;
-            //return orderViews;
         }
 
         // GET: api/Orders/5
