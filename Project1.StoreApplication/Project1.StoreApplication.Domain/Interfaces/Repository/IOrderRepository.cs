@@ -9,7 +9,7 @@ namespace Project1.StoreApplication.Domain.Interfaces.Repository
 {
     public interface IOrderRepository
     {
-        List<Order> AllOrdersForCustomer(int customerId, string cartMarkerDate);
+        Task<List<Order>> AllOrdersForCustomerAsync(int customerId, string cartMarkerDate);
         List<Order> AllOrdersForLocation(int locationId, string cartMarkerDate);
         void SubmitOrder(Guid orderId);
         Order GetParticularOrder(Guid orderId);

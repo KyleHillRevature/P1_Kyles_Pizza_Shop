@@ -15,15 +15,15 @@ namespace Project1.StoreApplication.Storage
         public OrderRepository(Kyles_Pizza_ShopContext context)
         { _context = context; }
 
-        public List<Order> AllOrdersForCustomer(int customerId, string cartMarkerDate)
+        public async Task<List<Order>> AllOrdersForCustomerAsync(int customerId, string cartMarkerDate)
         {
-            return _context.Orders.Include(o => o.Customer)
+            return await _context.Orders.Include(o => o.Customer)
                                     .Include(o => o.Location)
                                     .Include(o => o.OrderItems)
                                     .ThenInclude(oi => oi.Product)
                                     .Where(o => o.CustomerId == customerId && o.OrderDate > DateTime.Parse(cartMarkerDate))
                                     .OrderBy(o => o.OrderDate)
-                                    .ToList();
+                                    .ToListAsync();
         }
         public List<Order> AllOrdersForLocation(int locationId, string cartMarkerDate)
         {

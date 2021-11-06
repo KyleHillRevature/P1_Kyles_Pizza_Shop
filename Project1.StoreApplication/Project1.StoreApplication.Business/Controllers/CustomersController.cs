@@ -50,7 +50,7 @@ namespace Project1.StoreApplication.Business.Controllers
         //method is async because copy pasted the template
         // GET: api/Customers/firstAndLastName
         [HttpGet("firstName={firstName}&lastName={lastName}&userType={userType}")]
-        public int ConfirmCustomerExists(string firstName, string lastName, string userType)
+        public async Task<int> ConfirmCustomerExists(string firstName, string lastName, string userType)
         {
             _logger.LogInformation($"{firstName} {lastName} attempted to sign in as a {userType} customer.");
 
@@ -60,7 +60,7 @@ namespace Project1.StoreApplication.Business.Controllers
             if (customer.Count == 1)
                 if (userType.Equals("returning")) { 
                     _logger.LogInformation($"{firstName} {lastName} ({customer[0].Id}) signed in successfully"); 
-                    List<Order> orders = _orderRepository.AllOrdersForCustomer(customer[0].Id, Order.cartOrderDate);
+                   var orders = await _orderRepository.AllOrdersForCustomerAsync(customer[0].Id, Order.cartOrderDate);
                     string pastOrdersString = orders.Count + " past orders, see below\n";
                     int orderIndex = 1;
                     foreach (Order order in orders)

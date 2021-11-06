@@ -42,14 +42,16 @@ namespace Project1.StoreApplication.Business.Controllers
         //method is async because copy pasted the template
         // GET: api/Customers/userType_and_id
         [HttpGet("idType={idType}&id={id}")]
-        public IEnumerable<Order> GetOrders(string idType, int id)
+        public async Task<ActionResult<IEnumerable<Order>>> GetOrders(string idType, int id)
         {
-            List<Order> orders = new List<Order>();
-           
-                if (idType.Equals("customer")) orders = _orderRepository.AllOrdersForCustomer(id, Order.cartOrderDate);
-                else orders = _orderRepository.AllOrdersForLocation(id, Order.cartOrderDate);
-                
-            return orders;
+            if (!ModelState.IsValid) return BadRequest();
+            if (idType.Equals("customer"))
+                {
+                    List<Order> orders = await _orderRepository.AllOrdersForCustomerAsync(id, Order.cartOrderDate);
+                    if (orders.FirstOrDefault() == null) return NoContent();
+                    else return Ok(orders);
+                }
+            else return _orderRepository.AllOrdersForLocation(id, Order.cartOrderDate);
         }
 
         // GET: api/Orders/5
