@@ -16,6 +16,7 @@ using Project1.StoreApplication.Domain.Models;
 using Project1.StoreApplication.Business.Controllers;
 using Project1.StoreApplication.Domain.Interfaces.Repository;
 using Project1.StoreApplication.Storage;
+using Project1.StoreApplication.Domain.Interfaces.Model;
 
 namespace Project1.StoreApplication
 {
@@ -46,7 +47,8 @@ namespace Project1.StoreApplication
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IOrderItemRepository, OrderItemRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
-            services.AddScoped<ILocationInventoryRepository, LocationInventoryRepository>();            
+            services.AddScoped<ILocationInventoryRepository, LocationInventoryRepository>();
+            services.AddScoped<IOrder, Order>();
 
 
             //services.AddSwaggerGen(c =>
