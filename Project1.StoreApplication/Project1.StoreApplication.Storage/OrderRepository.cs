@@ -34,8 +34,24 @@ namespace Project1.StoreApplication.Storage
             _context.Database.ExecuteSqlRaw($"update Orders set OrderDate = getdate() where Id = '{orderId}'");
             _context.SaveChanges();
         }
-        public Order GetParticularOrder(Guid orderId)
-        { return _context.Orders.FromSqlRaw<Order>($"select * from Orders where Id = '{orderId}'").First(); }
+        public async Task<Order> GetParticularOrder(Guid orderId)
+        { 
+            return await _context.Orders.Include(o => o.OrderItems)
+                                        .ThenInclude(oi => oi.Product)
+                                        .Where(o => o.Id == orderId)
+                                        .FirstAsync();
+
+        }
+
+        public async Task<Order> GetParticularOrderNoTrack(Guid orderId)
+        { //return _context.Orders.FromSqlRaw<Order>($"select * from Orders where Id = '{orderId}'").First(); }
+            return await _context.Orders.AsNoTracking()
+                                        .Include(o => o.OrderItems)
+                                        .ThenInclude(oi => oi.Product)
+                                        .Where(o => o.Id == orderId)
+                                        .FirstAsync();
+
+        }
         public void UpdateTotalPrice(Guid orderId, decimal totalPrice)
         { _context.Database.ExecuteSqlRaw($"update Orders set TotalPrice = {totalPrice} where Id = '{orderId}'");_context.SaveChanges(); }
         public void AddNewOrder(Guid orderId, string cartMarkerDate, int customerId, int locationId, decimal productPrice)

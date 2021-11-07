@@ -12,6 +12,7 @@ using Project1.StoreApplication.Domain.Interfaces.Repository;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Diagnostics;
 using Project1.StoreApplication.Domain.Interfaces.Model;
+using Project1.StoreApplication.Domain;
 
 namespace Project1.StoreApplication.Business.Controllers
 {
@@ -19,25 +20,13 @@ namespace Project1.StoreApplication.Business.Controllers
     [ApiController]
     public class OrdersController : ControllerBase
     {
-        private readonly IOrderItemRepository _orderItemRepository;
         private readonly IOrderRepository _orderRepository;
-        private readonly ICustomerRepository _customerRepository;
-        private readonly ILocationRepository _locationRepository;
-        private readonly IProductRepository _productRepository;
-        private readonly ILocationInventoryRepository _locationInventoryRepository;
         private readonly ILogger<OrdersController> _logger;
         private readonly IOrder _order;
 
-        public OrdersController(IOrderItemRepository orderItemRepository , IOrderRepository orderRepository, ICustomerRepository customerRepository,
-        ILocationRepository locationRepository, IProductRepository productRepository, ILocationInventoryRepository locationInventoryRepository, 
-        ILogger<OrdersController> logger, IOrder order)
+        public OrdersController(IOrderRepository orderRepository, ILogger<OrdersController> logger, IOrder order)
         {
-            _orderItemRepository = orderItemRepository;
             _orderRepository = orderRepository;
-            _customerRepository = customerRepository;
-            _locationRepository = locationRepository;
-            _productRepository = productRepository;
-            _locationInventoryRepository = locationInventoryRepository;
             _logger = logger;
             _order = order;
         }
@@ -85,9 +74,10 @@ namespace Project1.StoreApplication.Business.Controllers
 // PUT: api/Orders/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut]
-        public OrderView PutOrder(OrderInput order)
+        public async Task<OrderView> PutOrder(OrderInput order)
         {
-            return _order.updateOrder(order);
+            Tuple<Order, Boolean, string> order1 = await _order.updateOrder(order);
+            return ModelMapper.OrderToOrderView(order1);
         }
         
 
@@ -96,32 +86,7 @@ namespace Project1.StoreApplication.Business.Controllers
         [HttpPost]
         public OrderView PostOrder(OrderInput order)
         {
-            if (LocationInventory.itemIsAvailable(order.LocationId, order.ProductId) && order.Action.Equals("add"))
-            {
-                Guid orderID = Guid.NewGuid();
-                Product product = _productRepository.GetProduct(order.ProductId);
-                _orderRepository.AddNewOrder(orderID, Order.cartOrderDate, order.CustomerId, order.LocationId, product.ProductPrice);
-                _orderItemRepository.InsertOrderItem(orderID, product.Id);
-                _locationInventoryRepository.DecreaseItemStockBy1(product.Id,order.LocationId);
-                
-                OrderView orderView = new OrderView
-                {
-                    Id = orderID,
-                    TotalPrice = product.ProductPrice,
-                    OrderItems = new List<OrderItemView> { new OrderItemView() { Name1 = product.Name1, Quantity = 1 } },
-                    actionSucceeded = true
-                };
-
-                return orderView;
-            }
-            else 
-            {
-                OrderView orderView = new OrderView();
-                orderView.actionSucceeded = false;
-                if (order.Action.Equals("remove")) orderView.message = "Can't remove an item you don't have in your cart.";
-                else orderView.message = "That item is out of stock.";
-                return orderView;
-            }
+            return _order.createOrder(order);
             #region
             //_context.Database.ExecuteSqlRaw($"insert into Orders values ('{orderID}',getdate(),{order.CustomerId},{order.LocationId},{order.TotalPrice})");
             //string orderItemsInsert = $"insert into OrderItems (OrderId,ProductId) values ";

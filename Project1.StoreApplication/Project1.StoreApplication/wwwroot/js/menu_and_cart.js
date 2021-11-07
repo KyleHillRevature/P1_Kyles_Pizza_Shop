@@ -7,19 +7,19 @@ window.onbeforeunload = function () {
 
 if (performance.navigation.type == performance.navigation.TYPE_RELOAD) fetch(`api/orders/`, {method: 'DELETE'})
  
-document.addEventListener('visibilitychange', function () {
-    if (document.visibilityState === 'hidden')
-        if (orderId !== 0) {
-            let r = confirm("This will get rid of your cart");
-            fetch(`api/orders/${orderId}`, {
-                method: 'DELETE'
-            })
-            document.getElementById("totalPrice").style.display = "none"; document.getElementById("cart").style.display = "none";
-            orderId = 0
+//document.addEventListener('visibilitychange', function () {
+//    if (document.visibilityState === 'hidden')
+//        if (orderId !== 0) {
+//            let r = confirm("This will get rid of your cart");
+//            fetch(`api/orders/${orderId}`, {
+//                method: 'DELETE'
+//            })
+//            document.getElementById("totalPrice").style.display = "none"; document.getElementById("cart").style.display = "none";
+//            orderId = 0
                 
 
-        }
-})
+//        }
+//})
 //to manage the cart we need the orderID, the chosen product, and chosen action
 
 fetch('api/products')

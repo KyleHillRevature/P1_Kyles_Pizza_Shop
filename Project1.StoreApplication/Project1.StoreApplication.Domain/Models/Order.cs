@@ -5,6 +5,7 @@ using Project1.StoreApplication.Domain.Interfaces.Repository;
 using Project1.StoreApplication.Domain.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 #nullable disable
 
@@ -42,9 +43,9 @@ namespace Project1.StoreApplication.Domain.Models
         private readonly ILocationInventoryRepository _locationInventoryRepository;
         private readonly ILogger<Order> _logger;
 
-        public OrderView updateOrder(OrderInput order)
+        public async Task<Tuple<Order,Boolean,string>> updateOrder(OrderInput order)
         {
-            Order orderOfInterest = _orderRepository.GetParticularOrder(order.OrderId);
+            Order orderOfInterest = await _orderRepository.GetParticularOrder(order.OrderId);
 
             //handles simple add of new orderItem
             if (LocationInventory.itemIsAvailable(orderOfInterest.LocationId, order.ProductId) && order.Action.Equals("add"))
@@ -55,15 +56,9 @@ namespace Project1.StoreApplication.Domain.Models
                 _orderItemRepository.InsertOrderItem(order.OrderId, product.Id);
                 _locationInventoryRepository.DecreaseItemStockBy1(product.Id, orderOfInterest.LocationId);
                 _logger.LogInformation($"{product.Name1} was added to order {order.OrderId}. Brought total price to {totalPrice}.");
-
-                OrderView orderView = new OrderView()
-                {
-                    TotalPrice = totalPrice,
-                    OrderItems = OrderView.GetOrderItemViews(order.OrderId),
-                    actionSucceeded = true
-                };
-                _logger.LogInformation($"Order now has {orderView.OrderItems.Count} different types of items.");
-                return orderView;
+                orderOfInterest = await _orderRepository.GetParticularOrderNoTrack(order.OrderId);
+                _logger.LogInformation($"Order now has {orderOfInterest.OrderItems.Count} different types of items.");
+                return new Tuple<Order,Boolean,string>(orderOfInterest,true,"");
             }
             else if (order.Action.Equals("remove") && itemIsInCart(order.OrderId, order.ProductId))
             {
@@ -72,11 +67,33 @@ namespace Project1.StoreApplication.Domain.Models
                 _orderRepository.UpdateTotalPrice(order.OrderId, totalPrice);
                 _orderItemRepository.Delete(order.OrderId, product.Id);
                 _locationInventoryRepository.IncreaseItemStockBy1(product.Id, orderOfInterest.LocationId);
+                return new Tuple<Order,Boolean,string>( await _orderRepository.GetParticularOrderNoTrack(order.OrderId),true,"");
+            }
+            else
+            {
+                string message = "";
+                if (order.Action.Equals("remove")) message = "Can't remove an item you don't have in your cart.";
+                else message = "That item is out of stock.";
+                return new Tuple<Order, Boolean, string>(orderOfInterest, false, message);
+            }
 
-                OrderView orderView = new OrderView()
+        }
+
+        public OrderView createOrder(OrderInput order) 
+        {
+            if (LocationInventory.itemIsAvailable(order.LocationId, order.ProductId) && order.Action.Equals("add"))
+            {
+                Guid orderID = Guid.NewGuid();
+                Product product = _productRepository.GetProduct(order.ProductId);
+                _orderRepository.AddNewOrder(orderID, Order.cartOrderDate, order.CustomerId, order.LocationId, product.ProductPrice);
+                _orderItemRepository.InsertOrderItem(orderID, product.Id);
+                _locationInventoryRepository.DecreaseItemStockBy1(product.Id, order.LocationId);
+
+                OrderView orderView = new OrderView
                 {
-                    TotalPrice = totalPrice,
-                    OrderItems = OrderView.GetOrderItemViews(order.OrderId),
+                    Id = orderID,
+                    TotalPrice = product.ProductPrice,
+                    OrderItems = new List<OrderItemView> { new OrderItemView() { Name1 = product.Name1, Quantity = 1 } },
                     actionSucceeded = true
                 };
 
@@ -86,13 +103,10 @@ namespace Project1.StoreApplication.Domain.Models
             {
                 OrderView orderView = new OrderView();
                 orderView.actionSucceeded = false;
-                orderView.TotalPrice = orderOfInterest.TotalPrice;
-                orderView.OrderItems = OrderView.GetOrderItemViews(order.OrderId);
                 if (order.Action.Equals("remove")) orderView.message = "Can't remove an item you don't have in your cart.";
                 else orderView.message = "That item is out of stock.";
                 return orderView;
             }
-
         }
 
         public Boolean itemIsInCart(Guid orderId, int productId)
