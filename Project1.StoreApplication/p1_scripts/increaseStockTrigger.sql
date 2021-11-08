@@ -1,17 +1,16 @@
-create trigger UpdateStock
+create trigger IncreaseStock
 on OrderItems
-after insert
+after delete
 as
 begin
 declare @productID int
 declare @locationID int
 select @productID = ProductId, @locationID = LocationId
-from inserted join Orders
-on inserted.OrderId = Orders.Id
+from deleted join Orders
+on deleted.OrderId = Orders.Id
 
 update LocationInventory
-set Stock = Stock -1
+set Stock = Stock + 1
 where ProductId = @productID and LocationId = @locationID 
 
 end
-

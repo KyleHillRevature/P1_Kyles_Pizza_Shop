@@ -56,7 +56,7 @@ namespace Project1.StoreApplication.Domain.Models
                 decimal totalPrice = orderOfInterest.TotalPrice + product.ProductPrice;
                 _orderRepository.UpdateTotalPrice(order.OrderId, totalPrice);
                 _orderItemRepository.InsertOrderItem(order.OrderId, product.Id);
-                _locationInventoryRepository.DecreaseItemStockBy1(product.Id, orderOfInterest.LocationId);
+                //_locationInventoryRepository.DecreaseItemStockBy1(product.Id, orderOfInterest.LocationId);
                 _logger.LogInformation($"{product.Name1} was added to order {order.OrderId}. Brought total price to {totalPrice}.");
                 orderOfInterest = await _orderRepository.GetParticularOrderNoTrack(order.OrderId);
                 _logger.LogInformation($"Order now has {orderOfInterest.OrderItems.Count} different types of items.");
@@ -76,7 +76,7 @@ namespace Project1.StoreApplication.Domain.Models
                 decimal totalPrice = orderOfInterest.TotalPrice - product.ProductPrice;
                 _orderRepository.UpdateTotalPrice(order.OrderId, totalPrice);
                 _orderItemRepository.Delete(order.OrderId, product.Id);
-                _locationInventoryRepository.IncreaseItemStockBy1(product.Id, orderOfInterest.LocationId);
+                //_locationInventoryRepository.IncreaseItemStockBy1(product.Id, orderOfInterest.LocationId);
                 return new Tuple<Order, Boolean, string>(await _orderRepository.GetParticularOrderNoTrack(order.OrderId), true, "");
             }
             else { message = "Can't remove an item you don't have in your cart."; actionSucceeded = false; }
