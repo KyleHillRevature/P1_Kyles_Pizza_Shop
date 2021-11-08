@@ -12,5 +12,6 @@ namespace Project1.StoreApplication.Domain.Interfaces.Repository
         List<LocationInventory> GetLocationInventory(int LocationId);
         public void DecreaseItemStockBy1(int productId, int locationId);
         void IncreaseItemStockBy1(int productId, int locationId);
+        int GetStock(int locationId, int productId);
     }
 }

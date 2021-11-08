@@ -1,4 +1,5 @@
 ﻿using Project1.StoreApplication.Domain.Interfaces.Model;
+using Project1.StoreApplication.Domain.Interfaces.Repository;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -9,6 +10,10 @@ namespace Project1.StoreApplication.Domain.Models
 {
     public partial class LocationInventory : ILocationInventory
     {
+        public LocationInventory() { }
+        public LocationInventory(ILocationInventoryRepository locationInventoryRepo)
+        { _locationInventoryRepo = locationInventoryRepo; }
+        private readonly ILocationInventoryRepository _locationInventoryRepo;
         public int Id { get; set; }
         public int LocationId { get; set; }
         public int ProductId { get; set; }
@@ -19,17 +24,9 @@ namespace Project1.StoreApplication.Domain.Models
 
         public Boolean itemIsAvailable(int locationId, int productId)
         {
-            string query = "select Stock from LocationInventory where LocationId = @locId and ProductId = @prodId";
-            using (SqlConnection conn = new SqlConnection("Server=(localdb)\\mssqllocaldb;Database=Kyles_Pizza_Shop;Trusted_Connection=True;"))
-            {
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@locId", locationId);
-                cmd.Parameters.AddWithValue("@prodId", productId);
-                conn.Open();
-                int stock = (int)cmd.ExecuteScalar();
-                if (stock > 0) return true;
-                else return false;
-            }
+            int stock = _locationInventoryRepo.GetStock(locationId,productId);
+            if (stock > 0) return true;
+            else return false;
         }
     }
 }

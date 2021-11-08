@@ -17,6 +17,11 @@ namespace Project1.StoreApplication.Storage
         public LocationInventoryRepository(Kyles_Pizza_ShopContext context)
         { _context = context; }
 
+        public int GetStock(int locationId, int productId)
+        {
+            return _context.LocationInventories.AsNoTracking().Where(locInv => locInv.LocationId == locationId && locInv.ProductId == productId).First().Stock;
+        }
+
         public List<LocationInventory> GetLocationInventory(int LocationId)
         {
             return _context.LocationInventories.FromSqlRaw<LocationInventory>($"select * from LocationInventory where LocationId = {LocationId} order by ProductId").ToList();
