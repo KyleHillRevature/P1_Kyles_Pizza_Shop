@@ -15,7 +15,7 @@ namespace Project1.StoreApplication.Domain.Interfaces.Repository
         Task<Order> GetParticularOrder(Guid orderId);
         Task<Order> GetParticularOrderNoTrack(Guid orderId);
         void UpdateTotalPrice(Guid orderId, decimal totalPrice);
-        void AddNewOrder(Guid orderId, string cartMarkerDate, int customerId, int locationId, decimal productPrice);
+        void AddNewOrder(Guid orderId, string cartMarkerDate, int customerId, int locationId);
         void Delete(Guid orderId);
         void Delete(string cartMarkerDate);
 

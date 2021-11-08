@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using Project1.StoreApplication.Storage;
 using System.Linq;
 
-namespace Project1.StoreApplication.Tests
+namespace Project1.StoreApplication.Tests.Repository
 {
     public class OrderRepositoryTests
     {

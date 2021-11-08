@@ -12,7 +12,6 @@ namespace Project1.StoreApplication.Domain.InputModels
         public int LocationId { get; set; }
         public int CustomerId { get; set; }
         public int ProductId {get;set;}
-        public string Action { get; set; }
 
     }
 }

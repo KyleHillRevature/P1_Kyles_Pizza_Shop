@@ -17,13 +17,14 @@ namespace Project1.StoreApplication.Domain.Models
         { OrderItems = new HashSet<OrderItem>(); }
         
         public Order(IOrderItemRepository orderItemRepository, IOrderRepository orderRepository, IProductRepository productRepository, ILocationInventoryRepository locationInventoryRepository,
-        ILogger<Order> logger)
+        ILogger<Order> logger, ILocationInventory locationInventory)
         {
             OrderItems = new HashSet<OrderItem>();
             _orderItemRepository = orderItemRepository;
             _orderRepository = orderRepository;
             _productRepository = productRepository;
             _locationInventoryRepository = locationInventoryRepository;
+            _locationInventory = locationInventory;
             _logger = logger;
         }
         public const string cartOrderDate = "1985-01-01";
@@ -42,13 +43,14 @@ namespace Project1.StoreApplication.Domain.Models
         private readonly IProductRepository _productRepository;
         private readonly ILocationInventoryRepository _locationInventoryRepository;
         private readonly ILogger<Order> _logger;
+        private readonly ILocationInventory _locationInventory;
 
-        public async Task<Tuple<Order,Boolean,string>> updateOrder(OrderInput order)
+        public async Task<Tuple<Order, Boolean, string>> addItem(OrderInput order)
         {
             Order orderOfInterest = await _orderRepository.GetParticularOrder(order.OrderId);
+            string message = ""; Boolean actionSucceeded = true;
 
-            //handles simple add of new orderItem
-            if (LocationInventory.itemIsAvailable(orderOfInterest.LocationId, order.ProductId) && order.Action.Equals("add"))
+            if (_locationInventory.itemIsAvailable(orderOfInterest.LocationId, order.ProductId))
             {
                 Product product = _productRepository.GetProduct(order.ProductId);
                 decimal totalPrice = orderOfInterest.TotalPrice + product.ProductPrice;
@@ -58,55 +60,35 @@ namespace Project1.StoreApplication.Domain.Models
                 _logger.LogInformation($"{product.Name1} was added to order {order.OrderId}. Brought total price to {totalPrice}.");
                 orderOfInterest = await _orderRepository.GetParticularOrderNoTrack(order.OrderId);
                 _logger.LogInformation($"Order now has {orderOfInterest.OrderItems.Count} different types of items.");
-                return new Tuple<Order,Boolean,string>(orderOfInterest,true,"");
             }
-            else if (order.Action.Equals("remove") && itemIsInCart(order.OrderId, order.ProductId))
+            else { message = "That item is out of stock."; actionSucceeded = false; }
+            return new Tuple<Order, Boolean, string>(orderOfInterest, actionSucceeded, message);
+        }
+
+        public async Task<Tuple<Order, Boolean, string>> removeItem(OrderInput order)
+        {
+            Order orderOfInterest = await _orderRepository.GetParticularOrder(order.OrderId);
+            string message = ""; Boolean actionSucceeded = true;
+
+            if (itemIsInCart(order.OrderId, order.ProductId))
             {
                 Product product = _productRepository.GetProduct(order.ProductId);
                 decimal totalPrice = orderOfInterest.TotalPrice - product.ProductPrice;
                 _orderRepository.UpdateTotalPrice(order.OrderId, totalPrice);
                 _orderItemRepository.Delete(order.OrderId, product.Id);
                 _locationInventoryRepository.IncreaseItemStockBy1(product.Id, orderOfInterest.LocationId);
-                return new Tuple<Order,Boolean,string>( await _orderRepository.GetParticularOrderNoTrack(order.OrderId),true,"");
+                return new Tuple<Order, Boolean, string>(await _orderRepository.GetParticularOrderNoTrack(order.OrderId), true, "");
             }
-            else
-            {
-                string message = "";
-                if (order.Action.Equals("remove")) message = "Can't remove an item you don't have in your cart.";
-                else message = "That item is out of stock.";
-                return new Tuple<Order, Boolean, string>(orderOfInterest, false, message);
-            }
-
+            else { message = "Can't remove an item you don't have in your cart."; actionSucceeded = false; }
+            return new Tuple<Order, Boolean, string>(orderOfInterest, actionSucceeded, message);
         }
 
-        public OrderView createOrder(OrderInput order) 
+        public async Task<Tuple<Order, Boolean, string>> createOrder(OrderInput order) 
         {
-            if (LocationInventory.itemIsAvailable(order.LocationId, order.ProductId) && order.Action.Equals("add"))
-            {
-                Guid orderID = Guid.NewGuid();
-                Product product = _productRepository.GetProduct(order.ProductId);
-                _orderRepository.AddNewOrder(orderID, Order.cartOrderDate, order.CustomerId, order.LocationId, product.ProductPrice);
-                _orderItemRepository.InsertOrderItem(orderID, product.Id);
-                _locationInventoryRepository.DecreaseItemStockBy1(product.Id, order.LocationId);
-
-                OrderView orderView = new OrderView
-                {
-                    Id = orderID,
-                    TotalPrice = product.ProductPrice,
-                    OrderItems = new List<OrderItemView> { new OrderItemView() { Name1 = product.Name1, Quantity = 1 } },
-                    actionSucceeded = true
-                };
-
-                return orderView;
-            }
-            else
-            {
-                OrderView orderView = new OrderView();
-                orderView.actionSucceeded = false;
-                if (order.Action.Equals("remove")) orderView.message = "Can't remove an item you don't have in your cart.";
-                else orderView.message = "That item is out of stock.";
-                return orderView;
-            }
+            Guid orderID = Guid.NewGuid();
+            _orderRepository.AddNewOrder(orderID, Order.cartOrderDate, order.CustomerId, order.LocationId);
+            order.OrderId = orderID;
+            return await addItem(order);
         }
 
         public Boolean itemIsInCart(Guid orderId, int productId)

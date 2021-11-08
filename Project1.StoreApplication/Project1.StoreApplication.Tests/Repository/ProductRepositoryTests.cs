@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Project1.StoreApplication.Tests
+namespace Project1.StoreApplication.Tests.Repository
 {
     public class ProductRepositoryTests
     {

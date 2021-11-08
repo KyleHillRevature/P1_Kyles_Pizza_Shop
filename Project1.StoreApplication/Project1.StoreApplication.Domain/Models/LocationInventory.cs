@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Project1.StoreApplication.Domain.Interfaces.Model;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
@@ -6,7 +7,7 @@ using System.Data.SqlClient;
 
 namespace Project1.StoreApplication.Domain.Models
 {
-    public partial class LocationInventory
+    public partial class LocationInventory : ILocationInventory
     {
         public int Id { get; set; }
         public int LocationId { get; set; }
@@ -16,7 +17,7 @@ namespace Project1.StoreApplication.Domain.Models
         public virtual Location Location { get; set; }
         public virtual Product Product { get; set; }
 
-        public static Boolean itemIsAvailable(int locationId, int productId)
+        public Boolean itemIsAvailable(int locationId, int productId)
         {
             string query = "select Stock from LocationInventory where LocationId = @locId and ProductId = @prodId";
             using (SqlConnection conn = new SqlConnection("Server=(localdb)\\mssqllocaldb;Database=Kyles_Pizza_Shop;Trusted_Connection=True;"))

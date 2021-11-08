@@ -86,37 +86,50 @@ function _addStockColumn(data) {
         td6.appendChild(textNode6);
         i++
     }
-
-    
 }
 
 function orderUpdate(productId, action) {
 
     if (orderId === 0) {
-        let order = { LocationId: sessionStorage.LocationID, CustomerId: sessionStorage.CustomerID, ProductId: productId, Action: action }
-        fetch('api/orders', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(order)
-        })
-            .then(response => response.json())
-            .then(data => displayCart(data))
+        //ignore if try to remove item from empty cart
+        if (action === 'add') {
+            let order = { LocationId: sessionStorage.LocationID, CustomerId: sessionStorage.CustomerID, ProductId: productId}
+            fetch('api/orders/create', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(order)
+            })
+                .then(response => response.json())
+                .then(data => displayCart(data))
+        }
     }
     else {
-        let orderUpdate1 = { OrderId: orderId, ProductId: productId, Action: action }
-        fetch('api/orders', {
-            method: 'PUT',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(orderUpdate1)
-        })
-            .then(response => response.json())
-            .then(data => displayCart(data))
+        let orderUpdate1 = { OrderId: orderId, ProductId: productId }
+        if (action === 'add')
+            fetch('api/orderitem/add', {
+                method: 'PUT',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(orderUpdate1)
+            })
+                .then(response => response.json())
+                .then(data => displayCart(data))
+        else 
+            fetch('api/orderitem/remove', {
+                method: 'PUT',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(orderUpdate1)
+            })
+                .then(response => response.json())
+                .then(data => displayCart(data))
     }
 }
 
@@ -153,7 +166,7 @@ function displayCart(data) {
 function submitOrder() {
     if (totalPriceValue === 0) { window.alert("Your cart is empty."); return }
     let order = { OrderId: orderId }
-    fetch('api/orders/submitOrder', {
+    fetch('api/orders/submit', {
         method: 'PUT',
         headers: {
             'Accept': 'application/json',

@@ -16,7 +16,7 @@ using Project1.StoreApplication.Domain;
 
 namespace Project1.StoreApplication.Business.Controllers
 {
-    [Route("html/api/[controller]")]
+    [Route("html/api/[controller]/[action]")]
     [ApiController]
     public class OrdersController : ControllerBase
     {
@@ -33,8 +33,8 @@ namespace Project1.StoreApplication.Business.Controllers
 
         //method is async because copy pasted the template
         // GET: api/Customers/userType_and_id
-        [HttpGet("idType={idType}&id={id}")]
-        public async Task<ActionResult<IEnumerable<Order>>> GetOrders(string idType, int id)
+        [Route("idType={idType}&id={id}")]
+        public async Task<ActionResult<IEnumerable<Order>>> orderHistory(string idType, int id)
         {
             if (!ModelState.IsValid) return BadRequest();
             if (idType.Equals("customer"))
@@ -60,33 +60,19 @@ namespace Project1.StoreApplication.Business.Controllers
         //    return order;
         //}
 
-
-
-        [HttpPut("submitOrder")]
-        public void submitOrder(OrderInput order)
+        public void submit(OrderInput order)
         {
             _orderRepository.SubmitOrder(order.OrderId);
             _logger.LogInformation($"Order {order.OrderId} was submitted.");
             
         }
 
-
-// PUT: api/Orders/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut]
-        public async Task<OrderView> PutOrder(OrderInput order)
-        {
-            Tuple<Order, Boolean, string> order1 = await _order.updateOrder(order);
-            return ModelMapper.OrderToOrderView(order1);
-        }
-        
-
         // POST: api/Orders
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public OrderView PostOrder(OrderInput order)
+        public async Task<OrderView> Create(OrderInput order)
         {
-            return _order.createOrder(order);
+            Tuple<Order, Boolean, string> order1 = await _order.createOrder(order);
+            return ModelMapper.OrderToOrderView(order1);
             #region
             //_context.Database.ExecuteSqlRaw($"insert into Orders values ('{orderID}',getdate(),{order.CustomerId},{order.LocationId},{order.TotalPrice})");
             //string orderItemsInsert = $"insert into OrderItems (OrderId,ProductId) values ";

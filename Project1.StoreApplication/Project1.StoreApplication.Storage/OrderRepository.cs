@@ -39,7 +39,7 @@ namespace Project1.StoreApplication.Storage
             return await _context.Orders.Include(o => o.OrderItems)
                                         .ThenInclude(oi => oi.Product)
                                         .Where(o => o.Id == orderId)
-                                        .FirstAsync();
+                                        .FirstOrDefaultAsync();
 
         }
 
@@ -54,9 +54,9 @@ namespace Project1.StoreApplication.Storage
         }
         public void UpdateTotalPrice(Guid orderId, decimal totalPrice)
         { _context.Database.ExecuteSqlRaw($"update Orders set TotalPrice = {totalPrice} where Id = '{orderId}'");_context.SaveChanges(); }
-        public void AddNewOrder(Guid orderId, string cartMarkerDate, int customerId, int locationId, decimal productPrice)
+        public void AddNewOrder(Guid orderId, string cartMarkerDate, int customerId, int locationId)
         {
-            _context.Database.ExecuteSqlRaw($"insert into Orders values ('{orderId}','{cartMarkerDate}',{customerId},{locationId},{productPrice})");
+            _context.Database.ExecuteSqlRaw($"insert into Orders values ('{orderId}','{cartMarkerDate}',{customerId},{locationId},0)");
             _context.SaveChanges();
         }
         public void Delete(Guid orderId)

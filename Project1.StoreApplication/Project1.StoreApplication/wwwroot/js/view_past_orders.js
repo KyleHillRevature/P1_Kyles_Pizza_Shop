@@ -1,4 +1,4 @@
-﻿const uri = 'api/orders'
+﻿const uri = 'api/orders/orderhistory'
 let idType = sessionStorage.getItem('idType')
 let id = 0
 if (idType === 'location') id = sessionStorage.getItem('LocationID')
